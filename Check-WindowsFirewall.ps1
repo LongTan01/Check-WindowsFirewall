@@ -19,8 +19,8 @@ Foreach ($Server in $ServerList)
         {
         $ServerOnline = 'Online'
         $HKLM = 2147483650
-	    $reg = get-wmiobject -list -namespace root\default -computer $Server | where-object { $_.name -eq "StdRegProv" }
-	    $DomainFirewall = $reg.GetDwordValue($HKLM, "System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile","EnableFirewall")
+	$reg = get-wmiobject -list -namespace root\default -computer $Server | where-object { $_.name -eq "StdRegProv" }
+	$DomainFirewall = $reg.GetDwordValue($HKLM, "System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile","EnableFirewall")
         $PrivateFirewall = $reg.GetDwordValue($HKLM, "System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile","EnableFirewall")
         $PublicFirewall = $reg.GetDwordValue($HKLM, "System\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile","EnableFirewall")
 
